@@ -5,9 +5,17 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import apiRouter from '../routes/api.js';
+import authRouter from '../routes/auth.js';
 
 const app = express();
+
 app.use(cors());
+
+app.use((req, res, next) => {
+  res.setHeader('Set-Cookie', ['SameSite=Strict;Secure;Path=/']);
+  next();
+});
+
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,6 +26,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 app.use('/api', apiRouter);
+app.use('/auth', authRouter);
 
 app.post('/api/hocuspocus', (req, res) => {
   const event = req.body.event;

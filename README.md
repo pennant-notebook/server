@@ -6,32 +6,53 @@ This repository contains the Node/Express webserver and DynamoDB API routes/cont
 
 ### Prerequisites
 
-You will need to create a `.env` file with the following environment variables:
-
-```env
-DYNAMO_AWS_ACCESS_KEY_ID=<your aws dynamodb access key id>
-DYNAMO_AWS_SECRET_ACCESS_KEY=<your aws dynamodb secret access key>
-```
+Ensure you have a `.env` file set up in your project root. You can use the `.env.example` file in the repository as a template. Copy it and rename to `.env`, then fill in the necessary environment variables.
 
 ### Installation
-Clone the repo
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/pennant-notebook/server.git
 ```
 
-Install NPM packages
+2. Navigate to the project directory:
+
+```bash
+cd server
+```
+
+3. Install the necessary npm packages:
 
 ```bash
 npm install
 ```
 
-### Usage
-To start the server, run:
+### Running the Server
+
+#### Development
+
+For development purposes, you can run the server using the following command which will enable hot-reloading:
+
+```bash
+npm run dev
+```
+
+#### Production
+
+Before deploying the server in a production environment, build the project using the following command:
+
+```bash
+npm run build
+```
+
+After building the project, start the server using:
 
 ```bash
 npm start
 ```
+
+This will start the server using the built files in the dist directory.
 
 ## API Documentation
 

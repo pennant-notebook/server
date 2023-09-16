@@ -35,7 +35,7 @@ router.post('/signup', async (req, res) => {
 
   try {
     await dynamodb.put(params);
-    const token = jwt.sign({ userID: params.Item.userID }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ userID: params.Item.userID }, process.env.JWT_SECRET!, {
       expiresIn: '24h'
     });
     res.cookie('pennantAccessToken', token, {
@@ -65,7 +65,7 @@ router.post('/signin', async (req, res) => {
     } else {
       const isValidPassword = await bcrypt.compare(password, userData.Item.hashedPassword);
       if (isValidPassword) {
-        const token = jwt.sign({ userID: userData.Item.userID }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ userID: userData.Item.userID }, process.env.JWT_SECRET!, {
           expiresIn: '24h'
         });
         res.cookie('pennantAccessToken', token, {
@@ -104,6 +104,7 @@ router.get('/getAccessToken', async (req, res) => {
     })
     .then(data => {
       res.cookie('pennantAccessToken', data.access_token, {
+        httpOnly: true,
         sameSite: 'lax',
         secure: process.env.NODE_ENV === 'production'
       });
@@ -116,7 +117,7 @@ router.get('/getUserData', async (req, res) => {
   await fetch('https://api.github.com/user', {
     method: 'GET',
     headers: {
-      Authorization: req.get('Authorization') // Bearer ACCESS TOKEN
+      Authorization: req.get('Authorization') as string // Bearer ACCESS TOKEN
     }
   })
     .then(response => {

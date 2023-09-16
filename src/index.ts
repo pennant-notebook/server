@@ -1,11 +1,12 @@
 import 'dotenv/config';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import apiRouter from '../routes/api.js';
-import authRouter from '../routes/auth.js';
+import { authRouter, apiRouter } from './routes';
+
+
 
 const app = express();
 

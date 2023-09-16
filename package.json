@@ -1,12 +1,14 @@
 {
-  "name": "pennant-express",
+  "name": "pennant-server",
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "src/index.js",
+  "source": "src/index.ts",
+  "main": "dist/src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node dist/src/index.js",
+    "dev": "MODE=development vite-node src/index.ts",
+    "build": "tsc",
     "dev:all": "concurrently \"npm run dev\" \"cd ../client && npm run dev\"",
     "build:ui": "cd ../client && npm run build && cp -r dist ../server",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
@@ -26,7 +28,15 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.14",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.3",
+    "@types/node": "^20.6.2",
+    "@types/uuid": "^9.0.4",
     "concurrently": "^8.2.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "typescript": "^5.2.2",
+    "vite-node": "^0.34.4"
   }
 }

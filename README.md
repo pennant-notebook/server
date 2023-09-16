@@ -17,7 +17,7 @@ DYNAMO_AWS_SECRET_ACCESS_KEY=<your aws dynamodb secret access key>
 Clone the repo
 
 ```bash
-git clone https://github.com/pennant-notebook/webserver.git
+git clone https://github.com/pennant-notebook/server.git
 ```
 
 Install NPM packages

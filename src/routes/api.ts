@@ -89,7 +89,9 @@ router.get('/doc/:docID/:username', async (req, res) => {
 
 // createDocInDynamo
 router.post('/doc/:username', async (req, res) => {
+  console.log(req.body)
   const newDocId = uuidv4();
+  const language = req.body.language;
 
   // Fetch the userID of the given username
   const userParams = {
@@ -116,7 +118,8 @@ router.post('/doc/:username', async (req, res) => {
     Item: {
       docID: newDocId,
       username: req.params.username,
-      userID: userID
+      userID: userID,
+      language: language,
     }
   };
 
